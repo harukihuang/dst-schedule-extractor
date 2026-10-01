@@ -20,3 +20,10 @@ Working code that needs to display or schedule around DST boundaries usually har
 * The returned datetimes are timezone-aware and expressed in the *target* zone's local frame. The offset shown is the offset that applies immediately *after* the transition (e.g. spring-forward in New York shows `-04:00`, not the pre-transition `-05:00`).
 * If a zone has more than one transition of the same sign in a year (historical political changes), the library keeps the first of each sign. This is a deliberate, single interpretation rather than attempting to rank historical transitions.
 * The scan starts from December of the previous year so that January 1 always has a valid prior offset to compare against.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
