@@ -1,6 +1,6 @@
 [project]
 name = "dst-schedule-extractor"
-version = "0.1.2"
+version = "0.1.3"
 description = "Finds the precise dates of daylight saving time transitions for a timezone."
 requires-python = ">=3.10"
 dependencies = []
